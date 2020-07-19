@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<title>Reviewer Dashboard</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #E1E1E1;
+  border: none;
+  color: #000000;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  
+  
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.no_bull{
+    list-style: none;
+}
+
+.author-info  {
+        font-family: "Herr Von Muellerhoff", cursive; 
+        
+        
+        margin:10px;
+      }
+
+.hbar_red{
+  display: block;
+  height: 5px;
+  border: 0;
+  border-top: 5px solid #ff0000;
+  
+  padding: 0;
+
+
+}
+
+.hbar_yellow{
+  display: block;
+  height: 5px;
+  border: 0;
+  border-top: 5px solid #ffbf00;
+  
+  padding: 0;
+
+
+}
+
+.hbar_green{
+  display: block;
+  height: 5px;
+  border: 0;
+  border-top: 5px solid #40ff00;
+
+  padding: 0;
+
+
+}
+
+
+
+
+
+
+
+</style>
+<body class="w3-theme-l5">
+
+<!-- Navbar -->
+<div class="w3-top">
+ <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Logo</a>
+
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
+  <!-- 
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Paper Upload"><i class="fa fa-upload"></i></a>
+
+  <div class="w3-dropdown-hover w3-hide-small">
+    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green"></span></button>     
+  </div> -->
+  <a href="/" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Logout"><i class="fa fa-sign-out"></i></a>  
+
+
+
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
+    
+  </a>
+ </div>
+</div>
+
+<!-- Navbar on small screens -->
+<div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+  
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
+</div>
+
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
+  <!-- The Grid -->
+  <div class="w3-row">
+    <!-- Left Column -->
+    <div class="w3-col m3">
+      <!-- Profile -->
+      <div class="w3-card w3-round w3-white">
+        <div class="w3-container">
+         <h4 class="w3-center">My Profile</h4>
+         
+         <hr>
+         <p><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i> 
+                {{user.username}}</p>
+         
+         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>
+                {{user.reviewer.field}}</p>
+         
+        </div>
+      </div>
+      <br>
+
+
+
+
+      
+      <!-- Accordion -->
+      
+      
+      
+    <!-- End Left Column -->
+    </div>
+    
+    <!-- Middle Column -->
+    <div class="w3-col m7">
+    
+      <!--Reviewer Personal Profile -->
+
+      
+      <center>
+      <h2>PERSONAL PROFILE</h2>
+      </center>
+      
+
+      <div class="author-info">
+        
+        <ul class="no_bull">
+          <!--Name-->
+          <li>
+            <h4>Name: <strong>{{user.first_name}}</strong></h4> 
+          </li>
+          
+          
+          <!--Field-->
+          <li>
+            <h4>Field:<strong>{{ user.reviewer.field }}</strong></h4> 
+          </li>
+
+
+          
+
+          <!--Contact-->
+          <li>
+            <h4>Email:<strong>{{ user.email }}</strong></h4>
+            <h4>Mobile: <strong>{{ user.contact }}</strong> </h4> 
+          </li>
+
+          
+          
+
+
+
+
+          
+        </ul>
+
+      </div>
+
+      <br>
+      <br>
+      <!--Research Papers listing -->
+      <center>
+      
+      <h2>RESEARCH PAPER DASHBOARD</h2>
+      </center>
+      
+      {% for paper in papers %}
+      
+      
+        <div class="w3-card w3-round w3-white" style="padding: 10px;">
+          <div class="w3-card w3-round w3-white" style="padding: 10px;">
+
+            {% if paper.status == "accepted" %}
+
+            <div class="hbar_green"></div>
+            {% endif %}
+
+            {% if paper.status == "waiting for review" %}
+
+            <div class="hbar_yellow"></div>
+            {% endif %}
+
+            {% if paper.status == "rejected" %}
+
+            <div class="hbar_red"></div>
+            {% endif %}
+
+            <h4><strong>Title</strong>: {{paper.title }}</h4>
+            <h4><strong>Field</strong>: {{ paper.field }}</h4>
+            <h4><strong>Description</strong>: {{paper.description}}</h4>
+            <h4><strong>Reviewer</strong>: {{paper.reviewer.user.first_name}} {{paper.reviewer.user.last_name}}</h4>
+            <h4><strong>Update Status</strong>: {{paper.status}}</h4>
+            
+            
+            
+            <a href="/media/{{ paper.paper }}">
+              <button class="w3-button w3-black" style="vertical-align:middle; margin-bottom: 10px;
+                          margin-left: 20px;">
+                <span>VIEW PAPER</span>
+              </button>
+            </a>
+            
+
+
+
+            <div class="w3-container">
+  
+              <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Add Comments</button>
+             
+               <div id="id01" class="w3-modal">
+                 <div class="w3-modal-content">
+                   <div class="w3-container">
+                     <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                    
+                     <form method="POST" action= "/db/addcomments/{{ paper.id}}/" >
+                           {% csrf_token %}
+                         
+                         <h4><strong>Comments to Author:</strong></h4>
+                         <textarea  name="commentstoauth" cols=70 rows=3 ></textarea>
+                         
+                         
+                         <br>
+                       
+                        <br>
+                        <h4><strong>Comments to Editor:</strong></h4>
+                        <textarea  name="commentstoedit" cols=70 rows=3 ></textarea>
+                        <br>
+                        <br>
+                        <button type="submit" value="Post"><strong>Submit Review</strong></button>
+                        </form>
+                        </strong></button>
+                        <br>
+                        
+                   </div>
+                 </div>
+               </div>
+             </div>
+            
+            
+
+
+          
+        
+          
+
+            
+            
+            
+            </center>
+            </div>
+            </div>
+        
+
+      {% endfor %}
+      
+
+    <!-- End Middle Column -->
+    </div>
+    
+    <!-- Right Column -->
+    
+  <!-- End Grid -->
+  </div>
+  
+<!-- End Page Container -->
+</div>
+<br>
+
+<!-- Footer -->
+<footer class="w3-container w3-theme-d3 w3-padding-16">
+  <h5>Footer</h5>
+</footer>
+
+<footer class="w3-container w3-theme-d5">
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+ 
+<script>
+// Accordion
+function myFunction(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-theme-d1";
+  } else { 
+    x.className = x.className.replace("w3-show", "");
+    x.previousElementSibling.className = 
+    x.previousElementSibling.className.replace(" w3-theme-d1", "");
+  }
+}
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html> 

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% load crispy_forms_tags %}
+
+	<title>Update Profile</title>
+
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+</head>
+
+
+</style>
+<body>
+	
+	<h1 style="margin:20px; text-align: center; font-family: montserrat;">UPDATE PROFILE</h1>
+	
+				
+	{% block content %}
+	<form method="post" enctype="multipart/form-data">
+		{%csrf_token%}
+
+		
+		<div style="margin-right:20px; margin-left: 20px;width: 60%;">
+			{{form.country|as_crispy_field}}
+		</div>
+
+		<div style="margin-right:20px; margin-left: 20px; width: 60%;">
+			{{form.field|as_crispy_field}}
+		</div>
+
+		<div style="margin-right:20px; margin-left: 20px;width: 60%;">
+			{{form.affliation|as_crispy_field}}
+		</div>
+
+		
+
+
+		
+		
+
+
+
+		
+
+
+
+
+
+		<button type="submit" style="border:1px; margin: 20px; width: 140px; height: 40px;">UPDATE</button>
+			
+
+	</form>
+
+			
+
+	{% endblock %}
+
+
+</body>
+</html>
