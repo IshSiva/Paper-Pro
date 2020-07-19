@@ -131,7 +131,7 @@ MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = ["CT/account/static",
                     "CT/dashboard/static"]
-STATIC_ROOT='/home/ish/casetools/CT/static'
+STATIC_ROOT='CT/static'
 MEDIA_ROOT=os.path.join(BASE_DIR, 'media') 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
